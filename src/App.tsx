@@ -1,11 +1,11 @@
-import Overview from "./pages/Index"
+import Overview from "./pages/Index";
 
 const App = () => {
   return (
     <div>
-        <Overview />
+      <Overview />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
