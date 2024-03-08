@@ -1,8 +1,11 @@
+import Overview from "./pages/Index";
 
 const App = () => {
   return (
-    <div className="bg-red-500">I want to see something</div>
-  )
-}
+    <div>
+      <Overview />
+    </div>
+  );
+};
 
 export default App;
