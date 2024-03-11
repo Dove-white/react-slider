@@ -4,6 +4,7 @@ import Car2 from "../assets/imgs/car-2.jpg";
 import Car3 from "../assets/imgs/car-3.jpg";
 import Car4 from "../assets/imgs/car-4.jpg";
 import Car5 from "../assets/imgs/car-5.jpg";
+import RiskSpot from "../assets/riskspot/2.png";
 
 const Overview = () => {
   const [next, setNext] = useState(0);
@@ -13,7 +14,7 @@ const Overview = () => {
     setTimeout(handleNext, 5000);
   }, [next]);
 
-  const carImages = [Car1, Car2, Car3, Car4, Car5];
+  const carImages = [Car1, Car2, Car3, Car4, Car5,RiskSpot];
 
   const handleNext = () => {
     if (next >= 0) setNext(next + 1);
@@ -38,7 +39,7 @@ const Overview = () => {
         }}
         className="md:font-[800] md:text-xl absolute top-[50%] right-[5%] bg-[#00000036] text-white cursor-pointer w-[5rem] md:w-[8rem] p-2 md:hover:bg-[#0000009f] rounded-lg shadow-orange-50 shadow-md"
       >
-        Net{" "}
+        Next{" "}
       </button>
       <button
         onClick={() => handlePrevious()}
