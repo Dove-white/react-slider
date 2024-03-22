@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { PiArrowFatLeftLight, PiArrowFatRight } from "react-icons/pi";
+import "./Slider.css"
 
 interface ImageUrlProps {
   ImageUrls: string[];
@@ -17,24 +19,29 @@ const ImageSlider = ({ ImageUrls }: ImageUrlProps) => {
 
   return (
     <>
-      <img
-        className="h-[100vh] w-full object-cover transition-all"
-        src={ImageUrls[index]}
-        alt=""
-      />
+      <div className="flex overflow-hidden">
+        {ImageUrls.map((url) => (
+          <img
+            className={`h-[100vh] w-full object-cover img-transition-trans flex-grow-0 flex-shrink-0 `}
+            src={url}
+            alt=""
+            style={{ translate: `${-100 * index}%` }}
+          />
+        ))}
+      </div>
       <button
         onClick={() => {
           handleNextBtn();
         }}
-        className="md:font-[800] md:text-xl absolute transition delay-100 ease-in top-[50%] right-[5%] bg-[#00000036] text-white cursor-pointer w-[5rem] md:w-[8rem] p-2 md:hover:bg-[#0000009f] rounded-lg shadow-orange-50 shadow-md"
+        className="font-[800] text-xl absolute transition delay-100 ease-in top-[50%] right-[5%] bg-[#00000036] text-white cursor-pointer  p-2 md:hover:bg-[#0000009f] rounded-lg shadow-orange-50 shadow-md"
       >
-        Next{" "}
+        <PiArrowFatRight size={30} className="slider-btn-animate" />
       </button>
       <button
         onClick={() => handlePrevBtn()}
-        className="md:font-[800] md:text-xl absolute transition delay-100 ease-in top-[50%] left-[5%] bg-[#00000036] text-white cursor-pointer w-[5rem] md:w-[8rem] p-2 md:hover:bg-[#0000009f] rounded-lg shadow-orange-50 shadow-md"
+        className="font-[800] text-xl absolute transition delay-100 ease-in top-[50%] left-[5%] bg-[#00000036] text-white cursor-pointer p-2 md:hover:bg-[#0000009f] rounded-lg shadow-orange-50 shadow-md"
       >
-        Pervious{" "}
+        <PiArrowFatLeftLight size={30} className="slider-btn-animate" />
       </button>
     </>
   );
