@@ -1,0 +1,15 @@
+.img-transition-trans {
+  transition: translate 300ms ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .slider-btn-animate:hover {
+    animation: squish 200ms ease-in-out;
+  }
+}
+
+@keyframes squish {
+  50% {
+    scale: 1.4 0.6;
+  }
+}
