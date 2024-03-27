@@ -6,7 +6,6 @@ import Car5 from "../assets/imgs/car-5.jpg";
 import ImageSlider from "./ImageSlider";
 
 const Overview = () => {
-
   const carImages = [Car1, Car2, Car3, Car4, Car5];
 
   return (
