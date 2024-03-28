@@ -6,11 +6,18 @@ import Car5 from "../assets/imgs/car-5.jpg";
 import ImageSlider from "./ImageSlider";
 
 const Overview = () => {
-  const carImages = [Car1, Car2, Car3, Car4, Car5];
+  const carImages = [
+    { url: Car1, alt: "Car image one" },
+    { url: Car2, alt: "Car image two" },
+    { url: Car3, alt: "Car image three" },
+    { url: Car4, alt: "Car image four" },
+    { url: Car5, alt: "Car image five" },
+   
+  ];
 
   return (
     <div>
-      <ImageSlider ImageUrls={carImages} />
+      <ImageSlider images={carImages} />
     </div>
   );
 };
