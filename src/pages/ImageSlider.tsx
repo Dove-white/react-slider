@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PiArrowFatLeftLight, PiArrowFatRight } from "react-icons/pi";
 import "./Slider.css";
 import { LuCircleDot } from "react-icons/lu";
@@ -14,14 +14,45 @@ interface ImageUrlProps {
 
 const ImageSlider = ({ images, className }: ImageUrlProps) => {
   const [imageIndex, setImageIndex] = useState(0);
+  const [stop, setStop] = useState(false);
+  const timeoutIdRef = useRef<number | null>(null);
 
   const handleNextBtn = () => {
+    setStop(true);
     setImageIndex((index) => (index === images.length - 1 ? 0 : index + 1));
   };
 
   const handlePrevBtn = () => {
+    setStop(true);
     setImageIndex((index) => (index === 0 ? images.length - 1 : index - 1));
   };
+
+  function startTimeout() {
+    timeoutIdRef.current = setTimeout(
+      () =>
+        imageIndex === images.length - 1
+          ? setImageIndex(0)
+          : setImageIndex(imageIndex + 1),
+      5000
+    );
+  }
+
+  function clearTimeoutOnCondition() {
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
+    }
+  }
+
+  useEffect(() => {
+    if (stop) {
+      setTimeout(clearTimeoutOnCondition, 0);
+      setTimeout(() => setStop(false), 7000);
+    }
+
+    if (stop === false) {
+      startTimeout();
+    }
+  }, [imageIndex, stop]);
 
   return (
     <section className={`max-md:relative  max-md:h-[20rem] ${className}`}>
@@ -61,7 +92,10 @@ const ImageSlider = ({ images, className }: ImageUrlProps) => {
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={() => setImageIndex(index)}
+            onClick={() => {
+              setImageIndex(index);
+              setStop(true);
+            }}
             className=" text-white preview-btn"
             aria-label={`Show slider ${index}`}
           >
